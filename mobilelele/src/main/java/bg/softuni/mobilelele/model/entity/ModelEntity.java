@@ -8,13 +8,14 @@ import javax.persistence.*;
 @Table(name = "models")
 public class ModelEntity extends BaseEntity {
 
-    @Column
+    @Column(nullable = false)
     private String name;
 
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private CategoryEnum category;
 
-    @Column
+    @Column(nullable = false)
     private String imageURL;
 
     @Column
