@@ -22,7 +22,7 @@ public class OfferEntity {
     @Type(type = "uuid-char")
     private UUID id;
 
-    @Column
+    @Column(nullable = false)
     private String description;
 
     @Column(nullable = false)
