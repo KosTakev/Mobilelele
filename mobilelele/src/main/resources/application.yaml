@@ -1,11 +1,10 @@
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost3306/mobilelele?allowPublicKeyRetrieval=true&usDatabaseIfNotExist=true&useSSL=false&useLegacyDatetime
+    url: jdbc:mysql://localhost:3306/mobilelele?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
     username: root
     password:
-
   jpa:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
-  hibernate:
-    dll-auto: create-drop
+    hibernate:
+      ddl-auto: create-drop

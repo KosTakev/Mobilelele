@@ -89,7 +89,7 @@ public class ModelEntity extends BaseEntity {
                 ", imageURL='" + imageURL + '\'' +
                 ", startYear=" + startYear +
                 ", endYear=" + endYear +
-                ", brand=" + brand +
+                ", brand=" + (brand != null ? brand.getName() : null) +
                 '}';
     }
 }
