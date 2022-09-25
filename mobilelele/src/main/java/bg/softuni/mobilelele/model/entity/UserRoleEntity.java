@@ -5,7 +5,7 @@ import bg.softuni.mobilelele.model.enums.UserRoleEnum;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "user-roles")
+@Table(name = "user_roles")
 public class UserRoleEntity {
 
     @Id
