@@ -3,6 +3,7 @@ package bg.softuni.mobilelele.service;
 import bg.softuni.mobilelele.model.dto.UserLoginDto;
 import bg.softuni.mobilelele.model.entity.UserEntity;
 import bg.softuni.mobilelele.repository.UserRepository;
+import bg.softuni.mobilelele.user.CurrentUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -14,9 +15,12 @@ public class UserService {
 
     private Logger LOGGER = LoggerFactory.getLogger(UserService.class);
     private UserRepository userRepository;
+    private CurrentUser currentUser;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository,
+                       CurrentUser currentUser) {
         this.userRepository = userRepository;
+        this.currentUser = currentUser;
     }
 
     public boolean login(UserLoginDto loginDto) {
@@ -29,6 +33,24 @@ public class UserService {
             return false;
         }
 
-        return userOpt.get().getPassword().equals(loginDto.getPassword());
+        boolean success = userOpt.get().getPassword().equals(loginDto.getPassword());
+
+        if(success) {
+            login(userOpt.get());
+        } else {
+            logout();
+        }
+
+        return success;
+    }
+
+    private void login(UserEntity userEntity) {
+        currentUser
+                .setLoggedIn(true)
+                .setName(userEntity.getFirstName() + " " + userEntity.getLastName());
+    }
+
+    private void logout() {
+        currentUser.clear();
     }
 }
