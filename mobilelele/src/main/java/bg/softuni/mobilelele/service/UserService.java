@@ -13,21 +13,19 @@ import java.util.Optional;
 public class UserService {
 
     private Logger LOGGER = LoggerFactory.getLogger(UserService.class);
-
     private UserRepository userRepository;
 
     public UserService(UserRepository userRepository) {
-
         this.userRepository = userRepository;
     }
 
     public boolean login(UserLoginDto loginDto) {
 
-        Optional<UserEntity> userOpt = userRepository
-                .findByEmail(loginDto.getUsername());
+
+        Optional<UserEntity> userOpt = userRepository.findByEmail(loginDto.getUsername());
 
         if(userOpt.isEmpty()) {
-            LOGGER.debug("User with name [{}] not found", loginDto.getUsername());
+            LOGGER.info("User with name [{}] not found", loginDto.getUsername());
             return false;
         }
 
