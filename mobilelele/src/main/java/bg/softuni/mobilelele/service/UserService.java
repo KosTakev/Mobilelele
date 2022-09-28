@@ -50,7 +50,7 @@ public class UserService {
                 .setName(userEntity.getFirstName() + " " + userEntity.getLastName());
     }
 
-    private void logout() {
+    public void logout() {
         currentUser.clear();
     }
 }
