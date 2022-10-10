@@ -32,7 +32,7 @@ public class CurrentUser {
         this.loggedIn = loggedIn;
         return this;
     }
-    
+
     public void clear() {
         loggedIn = false;
         name = null;

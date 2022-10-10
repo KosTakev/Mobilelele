@@ -5,8 +5,10 @@ import bg.softuni.mobilelele.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+//@RequestMapping("/users")
 public class UserLoginController {
 
     private UserService userService;
@@ -15,18 +17,18 @@ public class UserLoginController {
         this.userService = userService;
     }
 
-    @GetMapping("/users/login")
+    @GetMapping("users/login")
     public String login() {
         return "auth-login";
     }
 
-    @GetMapping("/users/logout")
+    @GetMapping("users/logout")
     public String logout() {
         userService.logout();
         return "redirect:/";
     }
 
-    @PostMapping("/user/login")
+    @PostMapping("user/login")
     public String login(UserLoginDto userLoginDto) {
         userService.login(userLoginDto);
         System.out.println("User is logged: " + userService.login(userLoginDto));
