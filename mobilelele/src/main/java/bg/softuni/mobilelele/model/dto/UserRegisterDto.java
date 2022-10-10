@@ -2,10 +2,20 @@ package bg.softuni.mobilelele.model.dto;
 
 public class UserRegisterDto {
 
+    private String email;
     private String firstName;
     private String lastName;
     private String password;
     private String confirmPassword;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public UserRegisterDto setEmail(String email) {
+        this.email = email;
+        return this;
+    }
 
     public String getFirstName() {
         return firstName;
