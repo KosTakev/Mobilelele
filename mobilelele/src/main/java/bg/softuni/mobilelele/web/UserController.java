@@ -28,7 +28,7 @@ public class UserController {
         return "redirect:/";
     }
 
-    @PostMapping("user/login")
+    @PostMapping("users/login")
     public String login(UserLoginDto userLoginDto) {
         userService.login(userLoginDto);
         System.out.println("User is logged: " + userService.login(userLoginDto));
@@ -42,6 +42,9 @@ public class UserController {
 
     @PostMapping("/users/register")
     public String register(UserRegisterDto userRegisterDto) {
+
+        userService.registerAndLogin(userRegisterDto);
+
         return "redirect:/";
     }
 }
