@@ -24,8 +24,8 @@
               th:text="${@currentUser.getName()}">
         </span>
 
-        <span th:if="${@currentUser.isAnonymous()}"
-              Anonymous>
+        <span th:if="${@currentUser.isAnonymous()}">
+              Anonymous
         </span>
     </h5>
 </div>
