@@ -17,7 +17,9 @@ public class UserRegisterDto {
     @NotEmpty
     @Size(min = 2, max = 20)
     private String lastName;
+
     private String password;
+
     private String confirmPassword;
 
     public String getEmail() {
