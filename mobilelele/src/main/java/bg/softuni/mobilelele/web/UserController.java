@@ -8,6 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
@@ -33,9 +34,19 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String login(UserLoginDto userLoginDto) {
-        userService.login(userLoginDto);
-        System.out.println("User is logged: " + userService.login(userLoginDto));
+    public String login(@Valid UserLoginDto userLoginDto,
+                        BindingResult bindingResult,
+                        RedirectAttributes redirectAttributes) {
+        if(bindingResult.hasErrors() || this.userService.login(userLoginDto)) {
+            redirectAttributes.addFlashAttribute("userModel", userLoginDto);
+            redirectAttributes.addFlashAttribute(
+                    "org.springframework.validation.BidingResult.userModel",
+                    bindingResult);
+            bindingResult.rejectValue("password", "InvalidPasswordError",
+                    "Invalid password");
+            return "redirect:/users/login";
+        }
+
         return "redirect:/";
     }
 }

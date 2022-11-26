@@ -11,8 +11,8 @@ public class OfferController {
         return "offers";
     }
 
-    @GetMapping("/offers/all")
+    @GetMapping("/offers/add")
     public String addOffer() {
-        return "offer-add";
+        return "offers";
     }
 }
