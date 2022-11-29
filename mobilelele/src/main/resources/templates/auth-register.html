@@ -84,11 +84,12 @@
             <label for="confirmPassword" class="text-white font-weight-bold">Password</label>
             <input
                     id="confirmPassword"
-                    name="confirmPassword"
+                    th:field="*{confirmPassword}"
+                    th:errorclass="is-invalid"
                     type="password" min="2" max="20" class="form-control"
                    placeholder="Password"/>
             <p class="errors alert alert-danger">
-                Password should match.
+                Passwords should match.
             </p>
         </div>
 
