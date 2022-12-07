@@ -3,10 +3,15 @@ package bg.softuni.mobilelele.model.dto;
 import bg.softuni.mobilelele.model.enums.EngineEnum;
 import bg.softuni.mobilelele.model.enums.TransmissionEnum;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 public class AddOfferDto {
+
+    @NotNull
+    @Min(1)
+    private Long modelId;
 
     @NotNull
     private EngineEnum engine;
@@ -16,6 +21,15 @@ public class AddOfferDto {
 
     @NotEmpty
     private String imageUrl;
+
+    public Long getModelId() {
+        return modelId;
+    }
+
+    public AddOfferDto setModelId(Long modelId) {
+        this.modelId = modelId;
+        return this;
+    }
 
     public String getImageUrl() {
         return imageUrl;
