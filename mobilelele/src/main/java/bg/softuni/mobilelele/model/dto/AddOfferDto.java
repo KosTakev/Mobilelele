@@ -6,6 +6,7 @@ import bg.softuni.mobilelele.model.enums.TransmissionEnum;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 public class AddOfferDto {
 
@@ -15,6 +16,17 @@ public class AddOfferDto {
 
     @NotNull
     private EngineEnum engine;
+
+    @Positive
+    @NotNull
+    private Integer price;
+
+    @Min(1900)
+    @NotNull
+    private Integer year;
+
+    @NotEmpty
+    private String description;
 
     @NotNull
     private TransmissionEnum transmission;
@@ -55,6 +67,33 @@ public class AddOfferDto {
 
     public AddOfferDto setTransmission(TransmissionEnum transmission) {
         this.transmission = transmission;
+        return this;
+    }
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public AddOfferDto setPrice(Integer price) {
+        this.price = price;
+        return this;
+    }
+
+    public Integer getYear() {
+        return year;
+    }
+
+    public AddOfferDto setYear(Integer year) {
+        this.year = year;
+        return this;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public AddOfferDto setDescription(String description) {
+        this.description = description;
         return this;
     }
 }

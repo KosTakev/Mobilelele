@@ -15,8 +15,8 @@ import javax.validation.Valid;
 @Controller
 public class OfferController {
 
-    private final OfferService offerService;
-    private final BrandService brandService;
+    private OfferService offerService;
+    private BrandService brandService;
 
     public OfferController(OfferService offerService,
                            BrandService brandService) {
@@ -53,8 +53,8 @@ public class OfferController {
                     bindingResult);
             return "redirect:/offers/add";
         }
-        //TODO
+
         offerService.addOffer(addOfferModel);
-        return "redirect:/";
+        return "redirect:/offers/all";
     }
 }
