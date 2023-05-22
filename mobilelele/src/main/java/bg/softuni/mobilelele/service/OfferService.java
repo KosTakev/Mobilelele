@@ -10,6 +10,7 @@ import bg.softuni.mobilelele.repository.ModelRepository;
 import bg.softuni.mobilelele.repository.OfferRepository;
 import bg.softuni.mobilelele.repository.UserRepository;
 
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,17 +33,17 @@ public class OfferService {
         this.modelRepository = modelRepository;
     }
 
-    public void addOffer(AddOfferDto addOfferDto) {
+    public void addOffer(AddOfferDto addOfferDto, UserDetails userDetails) {
         OfferEntity newOffer = offerMapper.addOfferDtoToOfferEntity(addOfferDto);
 
-        //TODO - current user should be logged
-
+        UserEntity seller = userRepository.findByEmail(userDetails.getUsername())
+                .orElseThrow();
 
         ModelEntity model = modelRepository.findById(addOfferDto.getModelId())
                 .orElseThrow();
 
         newOffer.setModel(model);
-       // newOffer.setSeller(seller);
+        newOffer.setSeller(seller);
 
         offerRepository.save(newOffer);
     }
